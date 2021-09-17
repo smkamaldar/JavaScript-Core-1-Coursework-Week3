@@ -39,9 +39,12 @@ function validatePasswords(passwords) {
   });
 }
 
+// function hasntItBeenUsedPreviously(passwords, pass, index) {
+//   let previousPasswords = passwords.slice(0, index);
+//   return !previousPasswords.includes(pass);
+// }
 function hasntItBeenUsedPreviously(passwords, pass, index) {
-  let previousPasswords = passwords.slice(0, index);
-  return !previousPasswords.includes(pass);
+  return passwords.indexOf(pass) === index;
 }
 
 function hasAtLeastFiveChar(string) {
