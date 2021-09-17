@@ -3,7 +3,9 @@ Write a function that:
 - Accepts an array as a parameter.
 - Returns a new array containing the first five elements of the passed array.
 */
-function first5() {
+
+function first5(array) {
+  return array.slice(0, 5);
 }
 
 /*
@@ -11,7 +13,13 @@ Write a function that:
 - Accepts an array as a parameter.
 - Returns a new array containing the same elements, except sorted.
 */
-function sortArray() {
+//basically you are merging array into that empty one,so now you have a copy of it,
+// so you are going to sort the copied one
+function sortArray(array) {
+  // return [].concat(array).sort();
+  //new ES6 way to make a copy of an array. Destructuring
+  let copied = [...array];
+  return copied.sort();
 }
 
 /*
@@ -24,7 +32,10 @@ Write a function that:
 - Removes any forward slashes (/) in the strings.
 - Makes the strings all lowercase.
 */
-function tidyUpString() {
+function tidyUpString(array) {
+  return array.map((item) => {
+    return item.toLowerCase().replace("/", "").trim();
+  });
 }
 
 /*
@@ -33,7 +44,11 @@ Write a function that:
 - Returns a new array containing the same elements, but without the element at the passed index.
 */
 
-function remove() {
+function remove(arr, index) {
+  return arr.filter((item, i) => {
+    return i !== index; // it checks if i is not equal to the index then returns true and keep this item otherwise
+    // they are equal and returns false so filter wont keep it
+  });
 }
 
 /*
@@ -44,7 +59,16 @@ Write a function that:
 - Numbers greater 100 must be replaced with 100.
 */
 
-function formatPercentage() {
+function formatPercentage(arr) {
+  let result = arr.map((item) => {
+    let number = item;
+    if (number > 100) {
+      number = 100;
+    }
+    number = Math.round(number * 100) / 100;
+    return `${number}%`;
+  });
+  return result;
 }
 
 /* ======= TESTS - DO NOT MODIFY ===== */

@@ -15,7 +15,12 @@
   
 */
 
-function getSettlers() {}
+function getSettlers(voyagers) {
+  let alphaResident = voyagers.filter((name) => {
+    return name.startsWith("A") && name.includes("family");
+  });
+  return alphaResident;
+}
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 

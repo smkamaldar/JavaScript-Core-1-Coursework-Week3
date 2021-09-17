@@ -11,7 +11,23 @@
     Some string methods that might help you here are .replace() and .substring(). 
 */
 
-function findSafeOxygenLevel() {}
+// create new array with out percentage
+
+function findSafeOxygenLevel(arr) {
+  let safePlanet = arr
+    .map((ol) => {
+      if (ol.includes("%")) {
+        return parseFloat(ol.replace("%", ""));
+      } else {
+        return 0;
+      }
+    })
+    .find((ol) => ol > 19.5 && ol < 23.5);
+  if (safePlanet) {
+    safePlanet = safePlanet + "%";
+  }
+  return safePlanet;
+}
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 

@@ -6,8 +6,26 @@
     (see tests to confirm how this data will be structured)
   - Returns an array containing only the names of the who have attended AT LEAST 8 classes
 */
+function isEligibleStudent(student) {
+  return student[1] >= 8;
+}
+function getStudentName(student) {
+  return student[0];
+}
 
-function getEligibleStudents() {}
+// function getEligibleStudents(attendance) {
+//   let eligibles = attendance.filter(isEligibleStudent);
+//   let eligiblesName = eligibles.map((person) => {
+//     return person[0];
+//   });
+//   return eligiblesName;
+// }
+
+//using Chain style
+function getEligibleStudents(attendance) {
+  let eligibles = attendance.filter(isEligibleStudent).map(getStudentName);
+  return eligibles;
+}
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 

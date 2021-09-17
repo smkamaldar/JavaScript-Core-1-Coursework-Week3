@@ -16,15 +16,37 @@ To be valid, a password must:
 We have supplied functions which will help you with some of these checks.
 
 Example 1:
-PreviousPassword = ["fhD8!yrjj", "ttkTu.wer3", "dvyyeyY!5", "qwbfj76%", "tytT3729."];
+PreviousPassword = ["fhD8!yrjj", "ttkTu.wer3", "fhD8!yrjj", "qwbfj76%", "tytT3729."];
 
 Expected Result:
 PasswordValidationResult=  [false, false, false, false, true]
 
 */
 
-function validatePasswords(passwords) {}
+function validatePasswords(passwords) {
+  return passwords.map((p, index) => {
+    if (
+      containsUppercaseLetter(p) &&
+      containsLowercaseLetter(p) &&
+      containsNumber(p) &&
+      containsSymbol(p) &&
+      hasAtLeastFiveChar(p) &&
+      hasntItBeenUsedPreviously(passwords, p, index)
+    ) {
+      return true;
+    }
+    return false;
+  });
+}
 
+function hasntItBeenUsedPreviously(passwords, pass, index) {
+  let previousPasswords = passwords.slice(0, index);
+  return !previousPasswords.includes(pass);
+}
+
+function hasAtLeastFiveChar(string) {
+  return string.length >= 5;
+}
 // Returns true if string contains at least one uppercase letter.
 function containsUppercaseLetter(string) {
   return /[A-Z]/.test(string);

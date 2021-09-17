@@ -17,14 +17,20 @@
  Hint: search for string methods like Includes and IndexOf.
 */
 
+// function checkCodeIsThere(stringText) {
+//   let magicWord = "code";
+//   //edit code below
+//   if (stringText.includes(magicWord)) {
+//     return stringText.indexOf(magicWord);
+//   } else {
+//     return "Not found";
+//   }
+// }
+
 function checkCodeIsThere(stringText) {
   let magicWord = "code";
-  //edit code below
-  if (stringText) {
-    return stringText;
-  } else {
-    return "Not found";
-  }
+  let index = stringText.indexOf(magicWord);
+  return index !== -1 ? index : "Not found";
 }
 
 /*
@@ -64,7 +70,10 @@ function checkCodeIsThere(stringText) {
   
   Hint: Use the corresponding array method to split the array.
 */
-function getTransportModes() {}
+function getTransportModes(locationAndAvailableTransport) {
+  locationAndAvailableTransport.shift();
+  return locationAndAvailableTransport;
+}
 
 /*
   Implement the function isAccessibleByTransportMode that
@@ -81,7 +90,9 @@ function getTransportModes() {}
     
   Hint: Use the corresponding array method to decide if an element is member of an array.
 */
-function isAccessibleByTransportMode() {}
+function isAccessibleByTransportMode(availableTransports, neededTransport) {
+  return availableTransports.includes(neededTransport);
+}
 
 /*
   Implement the function getLocationName that
@@ -92,7 +103,9 @@ function isAccessibleByTransportMode() {}
    - Returns the name of the location
       e.g: "Tower Bridge"
 */
-function getLocationName() {}
+function getLocationName(availableLocationAndTransports) {
+  return availableLocationAndTransports[0];
+}
 
 /*
  We arrived at the final method. it won't take long if you use the previously implemented functions wisely.
@@ -123,6 +136,10 @@ function getLocationName() {}
 */
 function journeyPlanner(locations, transportMode) {
   // Implement the function body
+  let locationsCanGo = locations
+    .filter((place) => isAccessibleByTransportMode(place, transportMode))
+    .map((location) => getLocationName(location));
+  return locationsCanGo;
 }
 
 /* ======= TESTS - DO NOT MODIFY ===== */
